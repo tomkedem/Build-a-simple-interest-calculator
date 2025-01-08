@@ -1,4 +1,13 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" VisualBasic.Settings="{x:Null}" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="CalculateTheSimpleInterest" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_DepositAmount" Type="InArgument(x:Double)" />
+    <x:Property Name="in_PeriodChosen" Type="InArgument(x:String)" />
+    <x:Property Name="out_CalculatedInterest" Type="OutArgument(x:Double)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>CalculateTheSimpleInterest_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -26,7 +35,6 @@
       <x:String>GlobalVariablesNamespace</x:String>
       <x:String>GlobalConstantsNamespace</x:String>
       <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
-      <x:String>Microsoft</x:String>
       <x:String>Microsoft.Win32.SafeHandles</x:String>
       <x:String>System.Numerics</x:String>
       <x:String>System.Net</x:String>
@@ -109,15 +117,12 @@
       <x:String>Microsoft.CodeAnalysis.VisualBasic</x:String>
       <x:String>Microsoft.CodeAnalysis.VisualBasic.Syntax</x:String>
       <x:String>Microsoft.VisualBasic.FileIO</x:String>
-      <x:String>System.Windows.Forms</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
     <sco:Collection x:TypeArguments="AssemblyReference">
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
-      <AssemblyReference>PresentationCore</AssemblyReference>
-      <AssemblyReference>PresentationFramework</AssemblyReference>
       <AssemblyReference>System</AssemblyReference>
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
@@ -137,7 +142,8 @@
       <AssemblyReference>System.Xml.Linq</AssemblyReference>
       <AssemblyReference>UiPath.System.Activities</AssemblyReference>
       <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
-      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.ViewModels</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
       <AssemblyReference>System.Console</AssemblyReference>
       <AssemblyReference>System.Security.Permissions</AssemblyReference>
       <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
@@ -147,7 +153,6 @@
       <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
       <AssemblyReference>System.Collections</AssemblyReference>
       <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
-      <AssemblyReference>System.Linq.Async</AssemblyReference>
       <AssemblyReference>System.Data.SqlClient</AssemblyReference>
       <AssemblyReference>System.IO.FileSystem.Watcher</AssemblyReference>
       <AssemblyReference>System.IO.Packaging</AssemblyReference>
@@ -159,7 +164,6 @@
       <AssemblyReference>System.Linq.Queryable</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic.Forms</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
-      <AssemblyReference>Microsoft.VisualStudio.Validation</AssemblyReference>
       <AssemblyReference>System.IO.Pipes</AssemblyReference>
       <AssemblyReference>System.Security.Cryptography</AssemblyReference>
       <AssemblyReference>System.Security.Principal.Windows</AssemblyReference>
@@ -176,6 +180,8 @@
       <AssemblyReference>System.Net.ServicePoint</AssemblyReference>
       <AssemblyReference>System.Net.WebHeaderCollection</AssemblyReference>
       <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
       <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
       <AssemblyReference>System.CodeDom</AssemblyReference>
       <AssemblyReference>System.Threading.AccessControl</AssemblyReference>
@@ -215,24 +221,12 @@
       <AssemblyReference>Microsoft.CodeAnalysis</AssemblyReference>
       <AssemblyReference>Microsoft.CodeAnalysis.CSharp</AssemblyReference>
       <AssemblyReference>Microsoft.CodeAnalysis.VisualBasic</AssemblyReference>
-      <AssemblyReference>Microsoft.CodeAnalysis.Features</AssemblyReference>
       <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
-      <AssemblyReference>System.Windows.Forms.Primitives</AssemblyReference>
-      <AssemblyReference>UiPath.System.Activities.ViewModels</AssemblyReference>
-      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="please add  display on-screen the accumulated interest at the end of the period and the final deposit balance." DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="704,1221" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="calculate the simple interest using the user inputs. The formula to calculate the interest can be Deposit Amount * Rate per year * Period chosen / 100. Set the Rate per year to 1.75 for all deposit periods. " DisplayName="CalculateTheSimpleInterest" sap:VirtualizedContainerService.HintSize="944,466.0239999999999" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
-      <Variable x:TypeArguments="x:Double" Name="initialDeposit" />
-      <Variable x:TypeArguments="x:String" Name="selectedPeriod" />
-      <Variable x:TypeArguments="x:Double" Name="finalDepositBalance" />
-      <Variable x:TypeArguments="x:Double" Name="accumulatedInterest" />
-      <Variable x:TypeArguments="x:Double" Name="retePerYear">
-        <Variable.Default>
-          <Literal x:TypeArguments="x:Double" Value="1.75" />
-        </Variable.Default>
-      </Variable>
+      <Variable x:TypeArguments="x:Double" Name="RatePerYear" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -240,32 +234,21 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:InputDialog Options="{x:Null}" OptionsString="{x:Null}" DisplayName="Prompt user to enter initial deposit amount" sap:VirtualizedContainerService.HintSize="434,271" sap2010:WorkflowViewState.IdRef="InputDialog_1" IsPassword="False" Label="Please enter the initial deposit amount:" Title="Initial Deposit">
-      <ui:InputDialog.Result>
-        <OutArgument x:TypeArguments="x:Double">[initialDeposit]</OutArgument>
-      </ui:InputDialog.Result>
-    </ui:InputDialog>
-    <ui:InputDialog Options="{x:Null}" DisplayName="Prompt user to select period (1, 3, or 5 years)" sap:VirtualizedContainerService.HintSize="434,324" sap2010:WorkflowViewState.IdRef="InputDialog_2" IsPassword="False" Label="Please select the period (1, 3, or 5 years):" OptionsString="1;3;5" Title="Select Period">
-      <ui:InputDialog.Result>
-        <OutArgument x:TypeArguments="x:String">[selectedPeriod]</OutArgument>
-      </ui:InputDialog.Result>
-    </ui:InputDialog>
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="CalculateTheSimpleInterest - Invoke Workflow File (CalculateTheSimpleInterest.xaml)" sap:VirtualizedContainerService.HintSize="434,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="CalculateTheSimpleInterest.xaml">
-      <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="x:Double" x:Key="in_DepositAmount">[initialDeposit]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_PeriodChosen">[selectedPeriod]</InArgument>
-        <OutArgument x:TypeArguments="x:Double" x:Key="out_CalculatedInterest">[finalDepositBalance]</OutArgument>
-      </ui:InvokeWorkflowFile.Arguments>
-    </ui:InvokeWorkflowFile>
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,173" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;THis is the value of initialDeposit: &quot; &amp; initialDeposit.ToString() &amp; &quot;  and this is the value of selectedPeriod: &quot; &amp; selectedPeriod &amp; &quot; The finalEarnings is: &quot; &amp; finalDepositBalance]" />
-    <Assign sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="Assign_4">
+    <Assign DisplayName="Set Rate per year to 1.75" sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="Assign_1">
       <Assign.To>
-        <OutArgument x:TypeArguments="x:Double">[accumulatedInterest]</OutArgument>
+        <OutArgument x:TypeArguments="x:Double">[RatePerYear]</OutArgument>
       </Assign.To>
       <Assign.Value>
-        <InArgument x:TypeArguments="x:Double">[cint(selectedPeriod)*retePerYear]</InArgument>
+        <InArgument x:TypeArguments="x:Double">[1.75]</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="434,108" sap2010:WorkflowViewState.IdRef="MessageBox_2" Text="[&quot;The accumulated interest is: &quot; &amp; accumulatedInterest &amp; &quot; The final deposit balnce is: &quot; &amp; finalDepositBalance+initialDeposit]" />
+    <Assign DisplayName="Calculate simple interest using formula (Deposit Amount * Rate per year * Period chosen / 100)" sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_2">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:Double">[out_CalculatedInterest]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:Double">[in_DepositAmount*RatePerYear*cInt(in_PeriodChosen)/100]</InArgument>
+      </Assign.Value>
+    </Assign>
   </Sequence>
 </Activity>
